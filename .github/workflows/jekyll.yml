@@ -34,16 +34,21 @@ jobs:
         run: bundle _2.4.13_ exec jekyll build --source antique-blog --destination _site --config antique-blog/_config.yml
 
       - name: Upload site artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: github-pages
-          path: _site
+        run: echo "Skipping artifact upload when deploying directly to gh-pages"
 
   deploy:
-    name: Deploy to GitHub Pages
+    name: Publish to gh-pages
     needs: build
     runs-on: ubuntu-latest
     if: github.ref == 'refs/heads/main' && github.event_name == 'push'
     steps:
-      - name: Deploy to GitHub Pages
-        uses: actions/deploy-pages@v1
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Deploy to gh-pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./_site
+          publish_branch: gh-pages
+          keep_files: true
