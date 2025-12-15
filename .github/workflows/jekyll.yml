@@ -22,8 +22,8 @@ jobs:
 
       - name: Install dependencies
         run: |
-          gem install bundler
-          bundle install --jobs 4 --retry 3
+          gem install bundler -v 2.4.13
+          bundle _2.4.13_ install --jobs 4 --retry 3
 
       - name: Build Jekyll site
         run: bundle exec jekyll build --source antique-blog --destination _site --config antique-blog/_config.yml
