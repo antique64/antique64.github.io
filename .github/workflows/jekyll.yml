@@ -31,11 +31,12 @@ jobs:
           bundle _2.4.13_ install --jobs 4 --retry 3
 
       - name: Build Jekyll site
-        run: bundle exec jekyll build --source antique-blog --destination _site --config antique-blog/_config.yml
+        run: bundle _2.4.13_ exec jekyll build --source antique-blog --destination _site --config antique-blog/_config.yml
 
       - name: Upload site artifact
-        uses: actions/upload-pages-artifact@v4
+        uses: actions/upload-artifact@v4
         with:
+          name: github-pages
           path: _site
 
   deploy:
