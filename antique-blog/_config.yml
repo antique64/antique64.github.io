@@ -1,0 +1,20 @@
+title: "Antique: C64 Engineering"
+description: "Technical posts on C64 software by Antique."
+baseurl: ""
+url: "https://antique64.github.io"
+
+permalink: /:categories/:year/:month/:day/:title/
+collections: {}
+
+markdown: kramdown
+kramdown:
+  input: GFM
+
+# keep the static folder as-is
+include:
+  - static
+
+# defaults
+paginate: 5
+plugins:
+  - jekyll-feed
