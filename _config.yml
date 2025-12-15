@@ -1,0 +1,13 @@
+title: "Antique: C64 Reverse Engineering"
+description: "Technical posts on reverse engineering C64 software by the Antique (aNTIQUe / ant) release group."
+baseurl: ""
+url: "https://antique64.github.io"
+
+theme: minima
+
+plugins:
+  - jekyll-feed
+
+markdown: kramdown
+kramdown:
+  input: GFM

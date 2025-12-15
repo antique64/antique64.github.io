@@ -1,0 +1,43 @@
+name: Build and deploy Jekyll site
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+    name: Build site
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.1'
+
+      - name: Install dependencies
+        run: |
+          gem install bundler
+          bundle install --jobs 4 --retry 3
+
+      - name: Build Jekyll site
+        run: bundle exec jekyll build --source antique-blog --destination _site --config antique-blog/config.yml
+
+      - name: Upload site artifact
+        uses: actions/upload-pages-artifact@v1
+        with:
+          path: _site
+
+  deploy:
+    name: Deploy to GitHub Pages
+    needs: build
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+    steps:
+      - name: Deploy to GitHub Pages
+        uses: actions/deploy-pages@v1

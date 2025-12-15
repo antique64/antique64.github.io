@@ -1,0 +1,10 @@
+site_title: Antique Blog
+author: Antique Group
+description: A blog dedicated to reverse engineering software on the C64.
+theme: default
+posts_per_page: 5
+date_format: YYYY-MM-DD
+language: en
+social:
+  twitter: antique_group
+  github: antique_group
